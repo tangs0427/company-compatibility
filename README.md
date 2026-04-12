@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 기업 궁합 테스트
 
-## Getting Started
+나와 기업의 궁합을 확인하는 엔터테인먼트 웹앱입니다.
 
-First, run the development server:
+## 기술 스택
+
+- Next.js (App Router)
+- TypeScript
+- Tailwind CSS
+- Vercel 배포 지원
+
+## 실행 방법
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+http://localhost:3000 에서 확인
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 빌드
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## 기업 추가 방법
 
-To learn more about Next.js, take a look at the following resources:
+`data/companies.ts` 파일의 배열에 새 객체를 추가하세요:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```typescript
+{
+  id: 21,                          // 고유 ID
+  name_kr: "새 기업",               // 한국어 이름
+  slug: "new-company",             // URL용 슬러그 (영문, 하이픈)
+  founded_date: "2000-01-01",      // 설립일 (YYYY-MM-DD)
+  industry: "tech",                // 산업군
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+사용 가능한 산업군 (`lib/types.ts`):
+- `tech` — IT/반도체
+- `finance` — 금융
+- `energy` — 에너지
+- `manufacturing` — 제조
+- `bio` — 바이오
+- `telecom` — 통신
+- `construction` — 건설
+- `retail` — 유통
 
-## Deploy on Vercel
+새 산업군 추가 시 `lib/types.ts`의 `Industry` 타입과 `lib/compatibility.ts`의 `industryModifier`에도 추가하세요.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 주의사항
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 본 서비스는 엔터테인먼트 목적의 콘텐츠입니다
+- 투자 자문 또는 금융 상품 추천이 아닙니다
+- 개인정보를 수집하거나 저장하지 않습니다

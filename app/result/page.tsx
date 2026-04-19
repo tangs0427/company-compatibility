@@ -6,6 +6,7 @@ import ResultCard from "@/components/ResultCard";
 import SajuCard from "@/components/SajuCard";
 import ScoreExplanation from "@/components/ScoreExplanation";
 import Disclaimer from "@/components/Disclaimer";
+import AdBanner from "@/components/AdBanner";
 import ShareButtons from "@/components/ShareButtons";
 
 function getParticle(name: string): string {
@@ -137,10 +138,8 @@ export default async function ResultPage({ searchParams }: Props) {
         {/* Score Explanation Accordion */}
         <ScoreExplanation />
 
-        {/* AdSense Placeholder */}
-        <div className="w-full h-24 bg-gray-100 rounded-xl flex items-center justify-center text-gray-300 text-xs border border-dashed border-gray-300">
-          광고 영역
-        </div>
+        {/* AdSense */}
+        <AdBanner slot="4103016284" />
 
         {/* Share */}
         <ShareButtons />

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 export default function ShareButtons() {
@@ -11,7 +12,6 @@ export default function ShareButtons() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Fallback for older browsers
       const input = document.createElement("input");
       input.value = window.location.href;
       document.body.appendChild(input);
@@ -29,14 +29,14 @@ export default function ShareButtons() {
         onClick={handleCopy}
         className="flex-1 py-3 rounded-xl bg-violet-100 text-violet-700 font-medium text-sm hover:bg-violet-200 transition-colors"
       >
-        {copied ? "복사됨!" : "링크 복사"}
+        {copied ? "복사됨" : "링크 복사"}
       </button>
-      <a
+      <Link
         href="/"
         className="flex-1 py-3 rounded-xl bg-gray-100 text-gray-700 font-medium text-sm hover:bg-gray-200 transition-colors text-center"
       >
         다시 하기
-      </a>
+      </Link>
     </div>
   );
 }

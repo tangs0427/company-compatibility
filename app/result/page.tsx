@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { companies } from "@/data/companies";
+import { companies } from "@/data/company-data";
 import { calculateCompatibility } from "@/lib/compatibility";
 import ResultCard from "@/components/ResultCard";
 import SajuCard from "@/components/SajuCard";

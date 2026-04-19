@@ -51,6 +51,7 @@ const industryModifier: Record<Industry, (score: number) => number> = {
   telecom: () => 1,
   construction: (score) => (score > 55 ? 2 : -2),
   retail: () => 0,
+  service: () => 0,
 };
 
 function getCompatibilityType(score: number): string {

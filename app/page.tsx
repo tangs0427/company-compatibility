@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import AdBanner from "@/components/AdBanner";
 
 export default function Home() {
   const router = useRouter();
@@ -78,6 +79,7 @@ export default function Home() {
           시작하기
         </button>
       </div>
+      <AdBanner slot="4103016284" />
     </div>
   );
 }

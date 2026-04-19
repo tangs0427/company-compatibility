@@ -6,7 +6,8 @@ export type Industry =
   | "bio"
   | "telecom"
   | "construction"
-  | "retail";
+  | "retail"
+  | "service";
 
 export interface Company {
   id: number;
@@ -14,6 +15,8 @@ export interface Company {
   slug: string;
   founded_date: string; // YYYY-MM-DD
   industry: Industry;
+  stock_code?: string;
+  market?: string;
 }
 
 export interface InterpretationCard {

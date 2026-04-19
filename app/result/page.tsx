@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { companies } from "@/data/company-data";
+import { findCompanyBySlug } from "@/data/company-data";
 import { calculateCompatibility } from "@/lib/compatibility";
 import ResultCard from "@/components/ResultCard";
 import SajuCard from "@/components/SajuCard";
@@ -39,7 +39,7 @@ function parseParams(searchParams: {
   if (isNaN(year) || isNaN(month) || isNaN(day)) return null;
   if (month < 1 || month > 12 || day < 1 || day > 31) return null;
 
-  const company = companies.find((c) => c.slug === companySlug);
+  const company = findCompanyBySlug(companySlug);
   if (!company) return null;
 
   const bucket = time !== null ? parseInt(time, 10) : null;

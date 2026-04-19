@@ -19,6 +19,10 @@ from zipfile import ZipFile
 ROOT_DIR = Path(__file__).resolve().parent.parent
 OUTPUT_PATH = ROOT_DIR / "data" / "companies.generated.ts"
 DEFAULT_CACHE_PATH = ROOT_DIR / "scripts" / ".cache" / "dart-company-cache.json"
+ENV_CANDIDATE_PATHS = [
+    ROOT_DIR / ".env.local",
+    ROOT_DIR / ".env",
+]
 
 MARKET_MAP = {
     "Y": "KOSPI",
@@ -118,6 +122,25 @@ def load_cache(path: Path) -> dict[str, Any]:
         return json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError:
         return {}
+
+
+def load_local_env() -> None:
+    for path in ENV_CANDIDATE_PATHS:
+        if not path.exists():
+            continue
+
+        for raw_line in path.read_text(encoding="utf-8").splitlines():
+            line = raw_line.strip()
+
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+
+            key, value = line.split("=", 1)
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+
+            if key and key not in os.environ:
+                os.environ[key] = value
 
 
 def save_cache(path: Path, cache: dict[str, Any]) -> None:
@@ -328,6 +351,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
+    load_local_env()
     api_key = args.api_key or os.environ.get("DART_API_KEY")
 
     if not api_key:
